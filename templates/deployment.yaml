@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deployment-2
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: {{ .Values.nginxImg }}
+        name: nginx
+        volumeMounts:
+          - name: nginx-deployment-config-volume
+            mountPath: /etc/config
+        envFrom:
+        - configMapRef:
+            name: nginx-deployment-config-2
+      volumes:
+      - name: nginx-deployment-config-volume
+        configMap:
+          name: nginx-deployment-config-2

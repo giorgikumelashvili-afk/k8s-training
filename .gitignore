@@ -1,0 +1,43 @@
+# == Helm Specifics ==
+# Helm chart dependencies (stored in charts/ directory)
+# These should be managed via Chart.yaml/Chart.lock
+charts/*.tgz
+charts/
+!charts/.gitkeep
+
+# Helm lock files (Optional: keep if you want reproducible builds)
+# Chart.lock
+
+# Helm temporary build files
+.helm/
+
+# == Kubernetes & Manifests ==
+# Ignore generated manifests if using Kustomize or Helm template output
+rendered-manifests/
+*.generated.yaml
+
+# == Secret Management (CRITICAL) ==
+# Never commit raw secrets or env files
+.env
+.env.*
+secrets.yaml
+*.secret.yaml
+kubeconfig
+*.kubeconfig
+
+# sops (encrypted files) are safe to commit, 
+# but keep the cleartext versions out
+*.decrypted.*
+
+# == Terraform (if used for K8s infrastructure) ==
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# == General OS & Tooling ==
+.DS_Store
+.idea/
+.vscode/
+*.swp
+node_modules/
