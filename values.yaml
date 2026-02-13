@@ -1,2 +1,2 @@
-replicaCount: 2
+replicaCount: 3
 nginxImg: nginx:stable-alpine3.23-perl
